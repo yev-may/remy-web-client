@@ -1,7 +1,7 @@
 <template>
 <header >
-    <div class="container header-container">
-        <div class="row align-items-center header-row">
+    <div class="container full-height">
+        <div class="row align-items-center full-height">
             <div class="col-auto">
                 <h1>Remy</h1>
             </div>
@@ -19,12 +19,6 @@ header {
     height: 7.5vh;
     color: var(--color-1);
     background-color: var(--color-c);
-}
-.header-container {
-    height: 100%;
-}
-.header-row {
-    height: 100%;
 }
 .btn-sign-in {
     color: var(--color-1) !important;
