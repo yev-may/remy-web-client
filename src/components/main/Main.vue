@@ -1,13 +1,42 @@
+<script>
+import Welcome from './../../pages/Welcome.vue'
+import About from './../../pages/About.vue'
+
+const routes = {
+    '/': Welcome,
+    '/about': About
+}
+
+export default {
+    data() {
+        return {
+            currentPath: window.location.pathname
+        }
+    },
+    computed: {
+        header() {
+            return Header
+        },
+        currentPage() {
+            return routes[this.currentPath]
+        }
+    },
+    mounted() {
+        window.addEventListener('hashchange', () => {
+            this.currentPath = window.location.pathname
+        })
+    }
+}
+</script>
+
 <template>
-<main>
-    
-</main>
+    <main class="theme-colors">
+        <component :is="currentPage" />
+    </main>
 </template>
 
 <style>
 main {
     height: 92.5vh;
-    color: var(color-c);
-    background-color: var(--color-1);
 }
 </style>
