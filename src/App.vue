@@ -1,9 +1,13 @@
-<script setup>
+<script>
+import Header from './header/Header.vue'
 
+export default {
+  components : {
+    Header
+  }
+}
 </script>
 
 <template>
-  <header>
-    <h1>Remy</h1>
-  </header>
+  <Header />
 </template>
