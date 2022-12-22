@@ -30,7 +30,7 @@ export default {
 </script>
 
 <template>
-    <main class="theme-colors">
+    <main class="theme">
         <component :is="currentPage" />
     </main>
 </template>
