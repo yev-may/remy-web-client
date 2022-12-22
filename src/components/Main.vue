@@ -1,6 +1,6 @@
 <script>
-import Welcome from './../../pages/Welcome.vue'
-import About from './../../pages/About.vue'
+import Welcome from './../pages/Welcome.vue'
+import About from './../pages/About.vue'
 
 const routes = {
     '/': Welcome,
