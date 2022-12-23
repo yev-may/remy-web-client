@@ -11,11 +11,8 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password">
                     </div>
-                    <button type="submit" class="btn">Sign in</button>
+                    <button type="submit" class="btn">Create account</button>
                 </form>
-                <div class="mu-3 text-center">
-                    <a href="/registration">Create account</a>
-                </div>
             </div>
         </div>
     </div>
