@@ -3,7 +3,7 @@
         <div class="row justify-content-md-center">
             <div class="col-3">
                 <div class="mt-5 mb-3 text-center">
-                    <h3 >Enter your data</h3>
+                    <h3 >Authorization</h3>
                 </div>
                 <form>
                     <div class="my-2">
