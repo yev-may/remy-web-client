@@ -2,8 +2,11 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-3">
+                <div class="mt-5 mb-3 text-center">
+                    <h3 >Enter your data</h3>
+                </div>
                 <form>
-                    <div class="my-3">
+                    <div class="my-2">
                         <label for="login" class="form-label">Login</label>
                         <input type="text" class="form-control" id="login">
                     </div>
@@ -11,9 +14,9 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password">
                     </div>
-                    <button type="submit" class="btn">Sign in</button>
+                    <button type="submit" class="btn w-100 btn-theme">Sign in</button>
                 </form>
-                <div class="mu-3 text-center">
+                <div class="mt-3 text-center">
                     <a href="/registration">Create account</a>
                 </div>
             </div>
