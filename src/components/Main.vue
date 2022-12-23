@@ -1,10 +1,12 @@
 <script>
 import Welcome from './../pages/Welcome.vue'
 import About from './../pages/About.vue'
+import Auth from './../pages/Auth.vue'
 
 const routes = {
     '/': Welcome,
-    '/about': About
+    '/about': About,
+    '/auth' : Auth
 }
 
 export default {
