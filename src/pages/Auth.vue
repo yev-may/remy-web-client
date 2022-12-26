@@ -42,8 +42,7 @@ export default {
             fetch(LOGIN_URL, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json;charset=utf-8',
-                    'cookie': document.cookie
+                    'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: JSON.stringify(this.userForm)
             })
