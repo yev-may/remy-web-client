@@ -7,12 +7,20 @@
                 </div>
                 <form id="registrationForm">
                     <div class="my-2">
+                        <label for="login" class="form-label">Email</label>
+                        <input v-model="userForm.email" type="text" class="form-control" id="login">
+                    </div>
+                    <div class="my-2">
                         <label for="login" class="form-label">Login</label>
                         <input v-model="userForm.login" type="text" class="form-control" id="login">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="password" class="form-label">Password</label>
                         <input v-model="userForm.password" type="password" class="form-control" id="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Repeat password</label>
+                        <input v-model="userForm.repeatPassword" type="password" class="form-control" id="password">
                     </div>
                 </form>
                 <button @click="sendRegistrationRequest()" class="btn w-100 btn-theme">Create account</button>
@@ -29,8 +37,10 @@ export default {
     data() {
         return {
             userForm : {
+                email: "",
                 login: "",
-                password: ""
+                password: "",
+                repeatPassword: ""
             }
         }
     },
