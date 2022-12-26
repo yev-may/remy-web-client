@@ -6,13 +6,24 @@
                 <h1>Remy</h1>
             </div>
             <div class="col-auto ms-auto">
-                <a href="/auth" class="btn btn-theme-c" role="button">Sign in</a>
+                <button @click="changeCurrentPath('/auth')" class="btn btn-theme-c">Sign in</button>
             </div>
         </div>
     </div>
 </header>
 </template>
 
+<script>
+export default {
+    methods: {
+        changeCurrentPath(newPath) {
+            if(window.location.pathname != newPath) {
+                window.location.pathname = newPath;
+            }
+        }
+    }
+}
+</script>
 
 <style>
 header {
