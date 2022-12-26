@@ -5,7 +5,7 @@
                 <div class="mt-5 mb-3 text-center">
                     <h3 >Registration</h3>
                 </div>
-                <form id="registrationForm">
+                <form @submit.prevent="submit" id="registrationForm">
                     <div class="my-2">
                         <label for="login" class="form-label">Email</label>
                         <input v-model="userForm.email" type="text" class="form-control" id="login">
