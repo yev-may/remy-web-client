@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { session } from './../module/session.js'
 
 const LOGIN_URL = 'http://localhost:8080/user/login'
 
@@ -46,8 +47,12 @@ export default {
                 },
                 body: JSON.stringify(this.userForm)
             })
-            .then(response => response.json())
-            .then(responseJson => console.log(responseJson));
+            .then(loginResponse => loginResponse.json())
+            .then(loginResponseJson => this.handleLoginResponse(loginResponseJson))
+            
+        },
+        handleLoginResponse(loginResponseJson) {
+            session.setId(loginResponseJson.id);
         }
     }
 }
