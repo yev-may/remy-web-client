@@ -1,10 +1,12 @@
+const TOKEN_KEY = "token"
+
 export const tokenHolder = {
 
     getToken() {
-        return window.$token;
+        return localStorage.getItem(TOKEN_KEY);
     },
 
     setToken(token) {
-        window.$token = token;
+        localStorage.setItem(TOKEN_KEY, token);
     }
 }
