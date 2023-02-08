@@ -38,7 +38,7 @@ export default {
     methods: 
     {
         sendLoginRequest() {
-            requestFactory.jsonRequest(GENERATE_TOKEN_URL, 'POST', JSON.stringify(this.userForm))
+            requestFactory.postJsonRequest(GENERATE_TOKEN_URL, this.userForm)
                     .then(response => this.validateResponse(response))
                     .then(jwtResponse => this.toJson(jwtResponse))
                     .then(jwtResponseJson => this.handlejwtResponse(jwtResponseJson))
