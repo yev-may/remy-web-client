@@ -49,7 +49,7 @@ export default {
         },
         
         handlejwtResponse(jwtResponseJson) {
-            session.setId(jwtResponseJson.jwtToken);
+        
         }
     }
 }
