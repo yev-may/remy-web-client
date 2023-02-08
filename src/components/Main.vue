@@ -35,12 +35,12 @@ export default {
 
 <template>
     <main class="theme">
-        <component :is="currentPage" />
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col align-self-center">
+                    <component :is="currentPage" />
+                </div>
+            </div>
+        </div>
     </main>
 </template>
-
-<style>
-main {
-    height: 92.5vh;
-}
-</style>
