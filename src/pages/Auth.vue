@@ -7,8 +7,8 @@
                 </div>
                 <form id="loginForm" @submit.prevent="submit">
                     <div class="my-2">
-                        <label for="login" class="form-label">Email</label>
-                        <input v-model="userForm.email" type="text" class="form-control" id="login">
+                        <label for="login" class="form-label">Login</label>
+                        <input v-model="userForm.username" type="text" class="form-control" id="login">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
@@ -25,34 +25,31 @@
 </template>
 
 <script>
-import { session } from './../module/session.js'
+import { requestFactory } from './../module/requestFactory.js'
 
-const LOGIN_URL = 'http://localhost:8080/user/login'
+const GENERATE_TOKEN_URL = 'http://localhost:8080/token/new'
 
 export default {
     data() {
         return {
             userForm : {
-                email: "",
+                username: "",
                 password: ""
             }
         }
     },
     methods: {
         sendLoginRequest() {
-            fetch(LOGIN_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(this.userForm)
-            })
-            .then(loginResponse => loginResponse.json())
-            .then(loginResponseJson => this.handleLoginResponse(loginResponseJson))
-            
+    
+            requestFactory.uathRequest(GENERATE_TOKEN_URL, 'POST', 
+                {'Content-Type': 'application/json;charset=utf-8'}, 
+                JSON.stringify(this.userForm))
+                    .then(jwtResponse => jwtResponse.json())
+                    .then(jwtResponseJson => this.handlejwtResponse(jwtResponseJson));            
         },
-        handleLoginResponse(loginResponseJson) {
-            session.setId(loginResponseJson.id);
+        
+        handlejwtResponse(jwtResponseJson) {
+            session.setId(jwtResponseJson.jwtToken);
         }
     }
 }
