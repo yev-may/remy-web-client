@@ -23,6 +23,7 @@ import { requestFactory } from './../module/requestFactory.js'
 import { tokenHolder } from './../module/tokenHolder.js'
 
 const GENERATE_TOKEN_URL = 'http://localhost:8080/token/new'
+const SUCCES_AUTH_URL = '/'
 
 export default {
     data() {
@@ -33,18 +34,41 @@ export default {
             }
         }
     },
-    methods: {
+
+    methods: 
+    {
         sendLoginRequest() {
-    
             requestFactory.uathRequest(GENERATE_TOKEN_URL, 'POST', 
                 {'Content-Type': 'application/json;charset=utf-8'}, 
                 JSON.stringify(this.userForm))
-                    .then(jwtResponse => jwtResponse.json())
-                    .then(jwtResponseJson => this.handlejwtResponse(jwtResponseJson));            
+                    .then(response => this.validateResponse(response))
+                    .then(jwtResponse => this.toJson(jwtResponse))
+                    .then(jwtResponseJson => this.handlejwtResponse(jwtResponseJson))
+                    .then(jwtToken => this.succesfulRedirect(jwtToken));           
         },
         
+        validateResponse(response) {
+            if(!response.ok) {
+                alert('Wrong login or password');
+                return null;
+            }
+            return response;
+        },
+
+        toJson(jwtResponse) {
+            if (jwtResponse == null) return;
+            return jwtResponse.json();
+        },
+
         handlejwtResponse(jwtResponseJson) {
+            if (jwtResponseJson == null) return;
             tokenHolder.setToken(jwtResponseJson.jwtToken);
+            return jwtResponseJson.jwtToken;
+        },
+
+        succesfulRedirect(jwtToken) {
+            if(jwtToken == null) return;
+            window.location.pathname = SUCCES_AUTH_URL;
         }
     }
 }
