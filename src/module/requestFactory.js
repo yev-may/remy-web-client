@@ -1,5 +1,15 @@
+JSON_REQUEST_HEADERS = {
+    'Content-Type': 'application/json;charset=utf-8'
+}
+
 export const requestFactory = {
-    uathRequest(url, method, headers, body) {
+
+
+    jsonRequest(url, method, body) {
+        return uathRequest(url, method, JSON_REQUEST_HEADERS, body);
+    },
+
+    request(url, method, headers, body) {
         return fetch(url, {
             method: method,
             headers: headers,
