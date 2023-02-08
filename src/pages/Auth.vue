@@ -26,6 +26,7 @@
 
 <script>
 import { requestFactory } from './../module/requestFactory.js'
+import { tokenHolder } from './../module/tokenHolder.js'
 
 const GENERATE_TOKEN_URL = 'http://localhost:8080/token/new'
 
@@ -49,7 +50,7 @@ export default {
         },
         
         handlejwtResponse(jwtResponseJson) {
-        
+            tokenHolder.setToken(jwtResponseJson.jwtToken);
         }
     }
 }
