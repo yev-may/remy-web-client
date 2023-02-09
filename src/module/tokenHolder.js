@@ -12,5 +12,9 @@ export const tokenHolder = {
 
     isUathed() {
         return this.getToken() != null;
+    },
+
+    logout () {
+        localStorage.clear();
     }
 }

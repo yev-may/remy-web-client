@@ -2,12 +2,14 @@
 import Welcome from './../pages/Welcome.vue'
 import About from './../pages/About.vue'
 import Auth from './../pages/Auth.vue'
+import Logout from './../pages/Logout.vue'
 import Registration from './../pages/Registration.vue'
 
 const routes = {
     '/'             : Welcome,
     '/about'        : About,
     '/auth'         : Auth,
+    '/logout'       : Logout,
     '/registration' : Registration
 }
 
