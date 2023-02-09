@@ -8,5 +8,9 @@ export const tokenHolder = {
 
     setToken(token) {
         localStorage.setItem(TOKEN_KEY, token);
+    }, 
+
+    isUathed() {
+        return this.getToken() != null;
     }
 }
