@@ -1,16 +1,25 @@
 <template>
-<header >
+<header>
     <div class="container full-height">
         <div class="row align-items-center full-height">
             <div class="col-auto">
-                <h1>Remy</h1>
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <h1>Remy</h1>
+                    </div>
+                    <div class="col-auto">
+                        <button @click="changeCurrentPath('/card-box/list')" class="btn btn-theme-c">Boxes</button>
+                    </div>
+                </div>
             </div>
             <div class="col-auto ms-auto">
-                <div v-if="!isAuhed">   
-                    <button @click="changeCurrentPath('/auth')" class="btn btn-theme-c">Sign in</button>
-                </div>
-                <div v-else>
-                    <button @click="changeCurrentPath('/logout')" class="btn btn-theme-c">Logout</button>
+                <div class="col-auto">
+                    <div v-if="!isAuhed">   
+                        <button @click="changeCurrentPath('/auth')" class="btn btn-theme-c">Sign in</button>
+                    </div>
+                    <div v-else>
+                        <button @click="changeCurrentPath('/logout')" class="btn btn-theme-c">Logout</button>
+                    </div>
                 </div>
             </div>
         </div>
