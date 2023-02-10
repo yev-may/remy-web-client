@@ -1,6 +1,9 @@
 <template>
     <div class="mt-5 mb-3 text-center">
-        <h3 >Authorization</h3>
+        <h3>Authorization</h3>
+    </div>
+    <div class="alert alert-warning mt-1" v-if="error != null">
+        <span>{{ error }}</span>
     </div>
     <form id="loginForm" @submit.prevent="submit">
         <div class="my-2">
@@ -31,7 +34,8 @@ export default {
             userForm : {
                 username: "",
                 password: ""
-            }
+            },
+            error: null
         }
     },
 
@@ -39,33 +43,16 @@ export default {
     {
         sendLoginRequest() {
             requestFactory.postJsonRequest(GENERATE_TOKEN_URL, this.userForm)
-                    .then(response => this.validateResponse(response))
-                    .then(jwtResponse => this.toJson(jwtResponse))
-                    .then(jwtResponseJson => this.handlejwtResponse(jwtResponseJson))
-                    .then(jwtToken => this.succesfulRedirect(jwtToken));           
+                    .then(response => this.handleReponse(response));   
         },
-        
-        validateResponse(response) {
+
+        handleReponse(response) {
             if(!response.ok) {
-                alert('Wrong login or password');
-                return null;
+                this.error = 'Wrong login or password';
+                return;
             }
-            return response;
-        },
-
-        toJson(jwtResponse) {
-            if (jwtResponse == null) return;
-            return jwtResponse.json();
-        },
-
-        handlejwtResponse(jwtResponseJson) {
-            if (jwtResponseJson == null) return;
-            tokenHolder.setToken(jwtResponseJson.jwtToken);
-            return jwtResponseJson.jwtToken;
-        },
-
-        succesfulRedirect(jwtToken) {
-            if(jwtToken == null) return;
+            let jsonResponse = response.json();
+            tokenHolder.setToken(jsonResponse.jwtToken);
             window.location.pathname = SUCCES_AUTH_URL;
         }
     }
