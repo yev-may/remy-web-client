@@ -96,13 +96,12 @@ export default {
       },
 
       getCardBoxes() {
-        return requestFactory.postAuthedJsonRequest(REGISTRATION_URL, { page: this.currentPage, size: this.perPage }, tokenHolder.getToken())
+        return requestFactory.postAuthedJsonRequest(REGISTRATION_URL, { page: this.currentPage - 1, size: this.perPage }, tokenHolder.getToken())
           .then(response => response.json());
       },
 
       handleResponse(json) {
         this.boxes = json.facets;
-        this.currentPage = json.currentPage;
         this.totalRows = json.totalElements;
         console.log(this.boxes);
       },
