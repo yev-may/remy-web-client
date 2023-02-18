@@ -43,17 +43,32 @@ export default {
     {
         sendLoginRequest() {
             requestFactory.postJsonRequest(GENERATE_TOKEN_URL, this.userForm)
-                    .then(response => this.handleReponse(response));   
+                .then(response => this.validateRepose(response))
+                .then(response => this.handleReponse(response))
+                .then(isAuthed => this.postRedirect(isAuthed));
         },
 
-        handleReponse(response) {
+        validateRepose(response) {
             if(!response.ok) {
                 this.error = 'Wrong login or password';
-                return;
+                return null;
             }
-            let jsonResponse = response.json();
+            return response.json();
+        },
+
+        handleReponse(jsonResponse) {
+            if(jsonResponse == null) {
+                return false;
+            }
+            console.log(jsonResponse);
             tokenHolder.setToken(jsonResponse.jwtToken);
-            window.location.pathname = SUCCES_AUTH_URL;
+            return true;
+        },
+
+        postRedirect(shouldRedirect) {
+            if(shouldRedirect) {
+                window.location.pathname = SUCCES_AUTH_URL;
+            }
         }
     }
 }
