@@ -15,12 +15,15 @@
     </div>
   </div>
 
-  <b-pagination
-    v-model="currentPage"
-    :total-rows="totalRows"
-    :per-page="perPage"
-    @change="handlePageChange">
-  </b-pagination>
+  <div class="overflow-auto">
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="totalRows"
+      :per-page="perPage"
+      @change="handlePageChange"
+      align="center">
+    </b-pagination>
+  </div>
 
 </template>
 
@@ -76,3 +79,16 @@ export default {
     }
 }
 </script>
+
+<style>
+  .page-item > .page-link {
+    color: var(--color-c);
+    background-color: var(--color-1);
+    border: var(--bs-pagination-border-width) solid var(--color-c)
+  }
+
+  .page-item.active > .page-link {
+    color: var(--color-1);
+    background-color: var(--color-c);
+  }
+</style>
