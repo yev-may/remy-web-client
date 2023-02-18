@@ -15,7 +15,23 @@
     </div>
   </div>
 
-  <div class="overflow-auto">
+  <div>
+    <button class="btn w-100 btn-theme" @click="isCreationFormHidden = !isCreationFormHidden">{{ creationFromHideBtnText }}</button>
+  </div>
+  <div v-if="!isCreationFormHidden">
+    <form>
+      <div class="my-2">
+        <label for="title" class="form-label">Title</label>
+        <input v-model="boxForm.title" type="text" class="form-control" id="title">
+        <div class="alert alert-warning mt-1" v-if="emailErrorMessage != null">
+            <span>{{ titleErrorMessage }}</span>
+        </div>
+      </div>
+      <button @click="sendBoxCreationRequest" class="btn w-100 btn-theme">Create</button>
+    </form>
+  </div>
+
+  <div class="overflow-auto mt-4">
     <b-pagination
       v-model="currentPage"
       :total-rows="totalRows"
@@ -32,6 +48,7 @@ import { requestFactory } from './../../module/requestFactory.js'
 import { tokenHolder } from './../../module/tokenHolder.js'
 
 const REGISTRATION_URL = 'http://localhost:8080/card-box/pageable'
+const BOX_CREATION_URL = 'http://localhost:8080/card-box/create'
 
 export default {
     data() {
@@ -45,7 +62,24 @@ export default {
         cardBoxesRequest : {
           page: this.currentPage,
           size: this.perPage
+        },
+
+        isCreationFormHidden: true,
+        fieldErrors: [],
+        boxForm: {
+          title: ""
         }
+      }
+    },
+
+    computed: 
+    {
+      creationFromHideBtnText() {
+        return this.isCreationFormHidden ? "Create new" : "Cancel";
+      },
+
+      titleErrorMessage() {
+        return getErrorMessage('title');
       }
     },
 
@@ -71,7 +105,20 @@ export default {
         this.currentPage = json.currentPage;
         this.totalRows = json.totalElements;
         console.log(this.boxes);
-      }
+      },
+
+      sendBoxCreationRequest() {
+        requestFactory.postAuthedJsonRequest(BOX_CREATION_URL, this.boxForm, tokenHolder.getToken());
+      },
+
+      // ToDo | Extract
+      getErrorMessage(field) {
+            for (let error of this.fieldErrors) {
+                if (error.field == field) {
+                    return error.message;
+                }
+            }
+        }
     },
     
     beforeMount() {
