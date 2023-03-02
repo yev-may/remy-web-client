@@ -49,8 +49,7 @@ export default {
 
 <style>
 header {
-    height: 7.5vh;
-    color: var(--color-1);
-    background-color: var(--color-c);
+    color: var(--color-main);
+    background-color: var(--color-secondary);
 }
 </style>
