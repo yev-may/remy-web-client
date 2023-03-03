@@ -8,7 +8,7 @@
     <form id="loginForm" @submit.prevent="submit">
         <div class="my-2">
             <label for="login" class="form-label">Login</label>
-            <input v-model="userForm.username" type="text" class="form-control" id="login">
+            <input v-model="userForm.login" type="text" class="form-control" id="login">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
@@ -25,14 +25,14 @@
 import { requestFactory } from './../module/requestFactory.js'
 import { tokenHolder } from './../module/tokenHolder.js'
 
-const GENERATE_TOKEN_URL = 'http://localhost:8080/token/new'
+const GENERATE_TOKEN_URL = 'http://localhost:8080/token/get'
 const SUCCES_AUTH_URL = '/'
 
 export default {
     data() {
         return {
             userForm : {
-                username: "",
+                login: "",
                 password: ""
             },
             error: null
@@ -61,7 +61,7 @@ export default {
                 return false;
             }
             console.log(jsonResponse);
-            tokenHolder.setToken(jsonResponse.jwtToken);
+            tokenHolder.setToken(jsonResponse.token);
             return true;
         },
 
