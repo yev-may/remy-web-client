@@ -6,42 +6,45 @@
         <div class="alert alert-warning mt-1" v-for="error in objectErrors">
             <span>{{ error }}</span>
         </div>
+
         <div class="my-2">
-            <label for="login" class="form-label">Email</label>
-            <input v-model="userForm.email" type="text" class="form-control" id="login">
-            <div class="alert alert-warning mt-1" v-if="emailErrorMessage != null">
-                <span>{{ emailErrorMessage }}</span>
-            </div>
+            <ValidatedFormField labelValue="Email" :errorMessage="emailErrorMessage" id="email">
+                <input v-model="userForm.email" type="text" class="form-control" id="email" >
+            </ValidatedFormField>
         </div>
         <div class="my-2">
-            <label for="login" class="form-label">Login</label>
-            <input v-model="userForm.login" type="text" class="form-control" id="login">
-            <div class="alert alert-warning mt-1" v-if="loginErrorMessage != null">
-                <span>{{ loginErrorMessage }}</span>
-            </div>
+            <ValidatedFormField labelValue="Login" :errorMessage="loginErrorMessage" id="login">
+                <input v-model="userForm.login" type="text" class="form-control" id="login">
+            </ValidatedFormField>
+            <label for="login" class="form-label"></label>
         </div>
         <div class="mb-2">
-            <label for="password" class="form-label">Password</label>
-            <input v-model="userForm.password" type="password" class="form-control" id="password">
-            <div class="alert alert-warning mt-1" v-if="passwordErrorMessage != null">
-                <span>{{ passwordErrorMessage }}</span>
-            </div>
+            <ValidatedFormField labelValue="Password" :errorMessage="passwordErrorMessage" id="password">
+                <input v-model="userForm.password" type="password" class="form-control" id="password">
+            </ValidatedFormField>
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Repeat password</label>
-            <input v-model="userForm.repeatPassword" type="password" class="form-control" id="password">
+            <ValidatedFormField labelValue="Repeat password" :errorMessage="passwordErrorMessage" id="repeatPassword">
+                <input v-model="userForm.repeatPassword" type="password" class="form-control" id="repeatPassword">
+            </ValidatedFormField>
         </div>
     </form>
     <button @click="sendRegistrationRequest()" class="btn w-100 btn-theme">Create account</button>
 </template>
 
 <script>
+import ValidatedFormField from '../fragments/ValidatedFormField.vue'
+
 import { requestFactory } from './../../module/requestFactory.js'
 
 const REGISTRATION_URL = 'http://localhost:8080/user/register'
 const SUCCESS_REGISTRATION_URL = '/auth'
 
 export default {
+    components: {
+        ValidatedFormField
+    },
+
     data() {
         return {
             userForm: {
