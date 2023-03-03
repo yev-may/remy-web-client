@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { requestFactory } from './../module/requestFactory.js'
+import { requestFactory } from './../../module/requestFactory.js'
 
 const REGISTRATION_URL = 'http://localhost:8080/user/register'
 const SUCCESS_REGISTRATION_URL = '/auth'

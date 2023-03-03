@@ -1,11 +1,11 @@
 <script>
-import Welcome from './../pages/Welcome.vue'
-import About from './../pages/About.vue'
-import Auth from './../pages/Auth.vue'
-import Logout from './../pages/Logout.vue'
-import Registration from './../pages/Registration.vue'
+import Welcome from './pages/Welcome.vue'
+import About from './pages/About.vue'
+import Auth from './pages/Auth.vue'
+import Logout from './pages/Logout.vue'
+import Registration from './pages/Registration.vue'
 
-import CardBoxList from './../pages/card-box/CardBoxList.vue'
+import CardBoxList from './pages/card-box/CardBoxList.vue'
 
 const routes = {
     '/'             : Welcome,

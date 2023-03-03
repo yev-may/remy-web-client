@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import { requestFactory } from './../module/requestFactory.js'
-import { tokenHolder } from './../module/tokenHolder.js'
+import { requestFactory } from './../../module/requestFactory.js'
+import { tokenHolder } from './../../module/tokenHolder.js'
 
 const GENERATE_TOKEN_URL = 'http://localhost:8080/token/get'
 const SUCCES_AUTH_URL = '/'

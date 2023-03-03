@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import { requestFactory } from './../../module/requestFactory.js'
-import { tokenHolder } from './../../module/tokenHolder.js'
+import { requestFactory } from './../../../module/requestFactory.js'
+import { tokenHolder } from './../../../module/tokenHolder.js'
 
 const REGISTRATION_URL = 'http://localhost:8080/card-box/pageable'
 const BOX_CREATION_URL = 'http://localhost:8080/card-box/create'

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { tokenHolder } from './../module/tokenHolder.js'
+import { tokenHolder } from './../../module/tokenHolder.js'
 
 const AFTER_LOGOUT_URL = "/"
 
