@@ -20,7 +20,7 @@
 import { requestFactory } from '../../../module/requestFactory.js'
 import { tokenHolder } from '../../../module/tokenHolder.js'
 
-const BOX_CREATION_URL = 'http://localhost:8080/card-box/create';
+const BOX_CREATION_URL = 'http://localhost:8080/box/create';
 
 export default {
 

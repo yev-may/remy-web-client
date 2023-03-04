@@ -27,7 +27,7 @@ import NewBoxForm from './NewBoxForm.vue'
 import { requestFactory } from '../../../module/requestFactory.js'
 import { tokenHolder } from '../../../module/tokenHolder.js'
 
-const REGISTRATION_URL = 'http://localhost:8080/card-box/pageable'
+const REGISTRATION_URL = 'http://localhost:8080/box/pageable'
 
 export default {
     data() {
