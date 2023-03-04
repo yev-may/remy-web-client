@@ -1,38 +1,40 @@
 <template>
-    <div class="mt-5 mb-3 text-center">
-        <h3>Registration</h3>
-    </div>
-    <form @submit.prevent="submit" id="registrationForm">
-        <div class="alert alert-warning mt-1" v-for="error in objectErrors">
-            <span>{{ error }}</span>
+    <CenterContainer>
+        <div class="mt-5 mb-3 text-center">
+            <h3>Registration</h3>
         </div>
-
-        <div class="my-2">
-            <ValidatedFormField labelValue="Email" :errorMessage="emailErrorMessage" id="email">
-                <input v-model="userForm.email" type="text" class="form-control" id="email" >
-            </ValidatedFormField>
-        </div>
-        <div class="my-2">
-            <ValidatedFormField labelValue="Login" :errorMessage="loginErrorMessage" id="login">
-                <input v-model="userForm.login" type="text" class="form-control" id="login">
-            </ValidatedFormField>
-            <label for="login" class="form-label"></label>
-        </div>
-        <div class="mb-2">
-            <ValidatedFormField labelValue="Password" :errorMessage="passwordErrorMessage" id="password">
-                <input v-model="userForm.password" type="password" class="form-control" id="password">
-            </ValidatedFormField>
-        </div>
-        <div class="mb-3">
-            <ValidatedFormField labelValue="Repeat password" :errorMessage="passwordErrorMessage" id="repeatPassword">
-                <input v-model="userForm.repeatPassword" type="password" class="form-control" id="repeatPassword">
-            </ValidatedFormField>
-        </div>
-    </form>
-    <button @click="sendRegistrationRequest()" class="btn w-100 btn-theme">Create account</button>
+        <form @submit.prevent="submit" id="registrationForm">
+            <div class="alert alert-warning mt-1" v-for="error in objectErrors">
+                <span>{{ error }}</span>
+            </div>
+            <div class="my-2">
+                <ValidatedFormField labelValue="Email" :errorMessage="emailErrorMessage" id="email">
+                    <input v-model="userForm.email" type="text" class="form-control" id="email" >
+                </ValidatedFormField>
+            </div>
+            <div class="my-2">
+                <ValidatedFormField labelValue="Login" :errorMessage="loginErrorMessage" id="login">
+                    <input v-model="userForm.login" type="text" class="form-control" id="login">
+                </ValidatedFormField>
+                <label for="login" class="form-label"></label>
+            </div>
+            <div class="mb-2">
+                <ValidatedFormField labelValue="Password" :errorMessage="passwordErrorMessage" id="password">
+                    <input v-model="userForm.password" type="password" class="form-control" id="password">
+                </ValidatedFormField>
+            </div>
+            <div class="mb-3">
+                <ValidatedFormField labelValue="Repeat password" :errorMessage="passwordErrorMessage" id="repeatPassword">
+                    <input v-model="userForm.repeatPassword" type="password" class="form-control" id="repeatPassword">
+                </ValidatedFormField>
+            </div>
+        </form>
+        <button @click="sendRegistrationRequest()" class="btn w-100 btn-theme">Create account</button>
+    </CenterContainer>
 </template>
 
 <script>
+import CenterContainer from '../fragments/CenterContainer.vue'
 import ValidatedFormField from '../fragments/ValidatedFormField.vue'
 
 import { requestFactory } from './../../module/requestFactory.js'
@@ -41,10 +43,6 @@ const REGISTRATION_URL = 'http://localhost:8080/user/register'
 const SUCCESS_REGISTRATION_URL = '/auth'
 
 export default {
-    components: {
-        ValidatedFormField
-    },
-
     data() {
         return {
             userForm: {
@@ -102,6 +100,10 @@ export default {
                 }
             }
         }
+    },
+
+    components: {
+        CenterContainer, ValidatedFormField
     }
 }
 </script>

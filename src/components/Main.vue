@@ -1,7 +1,6 @@
 <script>
 import Welcome from './pages/Welcome.vue'
-import About from './pages/About.vue'
-import Auth from './pages/Auth.vue'
+import Auth from './pages/AuthPage.vue'
 import Logout from './pages/Logout.vue'
 import Registration from './pages/Registration.vue'
 
@@ -9,7 +8,6 @@ import CardBoxList from './pages/card-box/CardBoxList.vue'
 
 const routes = {
     '/'             : Welcome,
-    '/about'        : About,
     '/auth'         : Auth,
     '/logout'       : Logout,
     '/registration' : Registration,
@@ -22,15 +20,15 @@ export default {
             currentPath: window.location.pathname
         }
     },
-    computed: {
-        header() {
-            return Header
-        },
+    computed: 
+    {
         currentPage() {
             return routes[this.currentPath]
         }
     },
-    mounted() {
+    
+    mounted() 
+    {
         window.addEventListener('hashchange', () => {
             this.currentPath = window.location.pathname
         })
@@ -40,12 +38,6 @@ export default {
 
 <template>
     <main class="theme">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col align-self-center">
-                    <component :is="currentPage" />
-                </div>
-            </div>
-        </div>
+        <component :is="currentPage" />
     </main>
 </template>
