@@ -8,7 +8,7 @@
                         <h1>Remy</h1>
                     </div>
                     <div class="col-auto">
-                        <button @click="changeCurrentPath('/card-boxes')" class="btn btn-theme-c">Boxes</button>
+                        <button @click="changeCurrentPath('/boxes')" class="btn btn-theme-c">Boxes</button>
                     </div>
                 </div>
             </div>

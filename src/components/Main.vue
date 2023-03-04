@@ -4,14 +4,14 @@ import Auth from './pages/AuthPage.vue'
 import Logout from './pages/Logout.vue'
 import Registration from './pages/Registration.vue'
 
-import CardBoxList from './pages/card-box/CardBoxList.vue'
+import BoxesPage from './pages/box/BoxesPage.vue'
 
 const routes = {
     '/'             : Welcome,
     '/auth'         : Auth,
     '/logout'       : Logout,
     '/registration' : Registration,
-    '/card-boxes'   : CardBoxList
+    '/boxes'        : BoxesPage
 }
 
 export default {
