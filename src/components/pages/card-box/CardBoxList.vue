@@ -1,16 +1,9 @@
 <template>
   <TopContainer>
-    <div class="theme-card-box mb-4" v-for="box in boxes">
-      <div class="text-center">
-        <h5>{{ box.title }}</h5>
-      </div>
-      <div>
-        <div>
-          <a class="btn w-100 btn-theme">Open</a>
-          <p class="mt-3 mb-0">Last repeated: {{ box.lastRepeat }}</p>
-        </div>
-      </div>
-    </div>
+
+    <BoxFacet v-for="boxFacet in boxes" 
+      :boxFacet="boxFacet" 
+      class="mb-4"/>
 
     <div>
       <button class="btn w-100 btn-theme" @click="showNewBoxForm = !showNewBoxForm">{{ creationFromHideBtnText }}</button>
@@ -42,6 +35,7 @@
 
 <script>
 import TopContainer from '../../fragments/TopContainer.vue'
+import BoxFacet from './BoxFacet.vue'
 
 import { requestFactory } from './../../../module/requestFactory.js'
 import { tokenHolder } from './../../../module/tokenHolder.js'
@@ -111,7 +105,7 @@ export default {
     component: {
         TopContainer
     },
-    components: { TopContainer }
+    components: { TopContainer, BoxFacet }
 }
 </script>
 
