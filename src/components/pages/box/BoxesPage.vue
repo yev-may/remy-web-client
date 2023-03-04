@@ -5,21 +5,7 @@
       :boxFacet="boxFacet" 
       class="mb-4"/>
 
-    <div>
-      <button class="btn w-100 btn-theme" @click="showNewBoxForm = !showNewBoxForm">{{ creationFromHideBtnText }}</button>
-    </div>
-    <div v-if="!showNewBoxForm">
-      <form>
-        <div class="my-2">
-          <label for="title" class="form-label">Title</label>
-          <input v-model="boxForm.title" type="text" class="form-control" id="title">
-          <div class="alert alert-warning mt-1" v-if="emailErrorMessage != null">
-            <span>{{ titleErrorMessage }}</span>
-          </div>
-        </div>
-        <button @click="sendBoxCreationRequest" class="btn w-100 btn-theme">Create</button>
-      </form>
-    </div>
+    <NewBoxForm />
 
     <div class="overflow-auto mt-4">
       <b-pagination 
@@ -36,12 +22,12 @@
 <script>
 import TopContainer from '../../fragments/TopContainer.vue'
 import BoxFacet from './BoxFacet.vue'
+import NewBoxForm from './NewBoxForm.vue'
 
 import { requestFactory } from '../../../module/requestFactory.js'
 import { tokenHolder } from '../../../module/tokenHolder.js'
 
 const REGISTRATION_URL = 'http://localhost:8080/card-box/pageable'
-const BOX_CREATION_URL = 'http://localhost:8080/card-box/create'
 
 export default {
     data() {
@@ -53,22 +39,10 @@ export default {
             cardBoxesRequest: {
                 page: this.currentPage,
                 size: this.perPage
-            },
-            showNewBoxForm: true,
-            fieldErrors: [],
-            boxForm: {
-                title: ""
             }
         };
     },
-    computed: {
-        creationFromHideBtnText() {
-            return this.showNewBoxForm ? "Create new" : "Cancel";
-        },
-        titleErrorMessage() {
-            return getErrorMessage("title");
-        }
-    },
+
     methods: {
         handlePageChange(value) {
             this.currentPage = value;
@@ -86,17 +60,6 @@ export default {
             this.boxes = json.facets;
             this.totalRows = json.totalElements;
             console.log(this.boxes);
-        },
-        sendBoxCreationRequest() {
-            requestFactory.postAuthedJsonRequest(BOX_CREATION_URL, this.boxForm, tokenHolder.getToken());
-        },
-        // ToDo | Extract
-        getErrorMessage(field) {
-            for (let error of this.fieldErrors) {
-                if (error.field == field) {
-                    return error.message;
-                }
-            }
         }
     },
     beforeMount() {
@@ -105,7 +68,7 @@ export default {
     component: {
         TopContainer
     },
-    components: { TopContainer, BoxFacet }
+    components: { TopContainer, BoxFacet, NewBoxForm }
 }
 </script>
 
