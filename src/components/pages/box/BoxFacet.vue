@@ -5,8 +5,8 @@
       </div>
       <div>
         <div>
-          <a class="btn w-100 btn-theme">Open</a>
-          <p class="mt-3 mb-0">Last repeated: {{ boxFacet.lastRepeat }}</p>
+          <a class="btn w-100 btn-theme" :href="getBoxUrl()">Open</a>
+          <!-- <p class="mt-3 mb-0">Last repeated: {{ boxFacet.lastRepeat }}</p> -->
         </div>
       </div>
     </div>
@@ -19,6 +19,13 @@ export default {
             type: Object,
             required: true
         }
+    },
+    
+    methods:
+    {
+      getBoxUrl() {
+        return '/box?id=' + this.boxFacet.id;
+      }
     }
 }
 </script>

@@ -5,13 +5,16 @@ import Logout from './pages/Logout.vue'
 import Registration from './pages/Registration.vue'
 
 import BoxesPage from './pages/box/BoxesPage.vue'
+import BoxPage from './pages/box/BoxPage.vue'
 
 const routes = {
     '/'             : Welcome,
     '/auth'         : Auth,
     '/logout'       : Logout,
     '/registration' : Registration,
-    '/boxes'        : BoxesPage
+
+    '/boxes'        : BoxesPage,
+    '/box'          : BoxPage
 }
 
 export default {

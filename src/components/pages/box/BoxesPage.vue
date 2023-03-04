@@ -32,7 +32,11 @@ const REGISTRATION_URL = 'http://localhost:8080/box/pageable'
 export default {
     data() {
         return {
-            boxes: [],
+            boxes: [
+              { id: 1, title: 'Test 1' },
+              { id: 2, title: 'Test 2' },
+              { id: 3, title: 'Test 3' },
+            ],
             perPage: 3,
             totalRows: 1,
             currentPage: 1,
