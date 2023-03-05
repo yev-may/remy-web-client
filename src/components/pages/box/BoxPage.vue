@@ -9,7 +9,7 @@
         
         <div class="mb-3">
             <p class="mb-2">New cards today: {{ box.cardsAddedToday }}</p>
-            <a class="btn w-100 btn-theme" href="">New card</a>
+            <a class="btn w-100 btn-theme" :href="getNewCardPageUrl()">New card</a>
         </div>
         
         <div class="mb-4">
@@ -27,12 +27,21 @@ export default {
     data() {
         return {
             box: {
+                id: 1,
                 title: 'Test 1',
                 cardsAddedToday: 5,
                 cardsToRepeatToday: 5
             }
         }
     },
+
+    methods:
+    {
+        getNewCardPageUrl() {
+            return '/card/new?box-id=' + this.box.id;
+        }
+    },
+
     components: { TopContainer }
 }
 </script>

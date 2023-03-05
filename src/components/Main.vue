@@ -7,6 +7,8 @@ import Registration from './pages/Registration.vue'
 import BoxesPage from './pages/box/BoxesPage.vue'
 import BoxPage from './pages/box/BoxPage.vue'
 
+import NewCardPage from './pages/card/NewCardPage.vue'
+
 const routes = {
     '/'             : Welcome,
     '/auth'         : Auth,
@@ -14,7 +16,8 @@ const routes = {
     '/registration' : Registration,
 
     '/boxes'        : BoxesPage,
-    '/box'          : BoxPage
+    '/box'          : BoxPage,
+    '/card/new'     : NewCardPage
 }
 
 export default {
