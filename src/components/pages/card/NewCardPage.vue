@@ -44,6 +44,7 @@ export default {
             return '/box?id=' + this.getBoxId();
         },
 
+        // ToDo | Refactor
         getBoxId() {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
