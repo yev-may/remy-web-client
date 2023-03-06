@@ -12,15 +12,14 @@
 import CenterContainer from '../fragments/CenterContainer.vue';
 
 import { tokenHolder } from './../../module/tokenHolder.js'
-
-const AFTER_LOGOUT_URL = "/"
+import { POST_LOGOUT_URL } from '../../module/apiUrls';
 
 export default {
     methods: 
     {
         logout() {
             tokenHolder.logout();
-            window.location.pathname = AFTER_LOGOUT_URL;
+            window.location.pathname = POST_LOGOUT_URL;
         }
     },
 

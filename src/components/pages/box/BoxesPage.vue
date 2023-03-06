@@ -26,7 +26,7 @@ import NewBoxForm from './NewBoxForm.vue'
 
 import api from '../../../module/apiService.js'
 
-const REGISTRATION_URL = 'http://localhost:8080/box/pageable'
+import { BOX_PAGE_URL } from '../../../module/apiUrls'
 
 export default {
     data() {
@@ -50,7 +50,7 @@ export default {
         },
 
         updateCardBoxes() {
-            return api.postAuthedJson(REGISTRATION_URL, { page: this.currentPage - 1, size: this.perPage })
+            return api.postAuthedJson(BOX_PAGE_URL, { page: this.currentPage - 1, size: this.perPage })
                 .then(response => response.json())
                 .then(json => this.handleResponse(json));
         },

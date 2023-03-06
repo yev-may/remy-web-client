@@ -39,8 +39,8 @@ import ValidatedFormField from '../fragments/ValidatedFormField.vue'
 
 import api from './../../module/apiService.js'
 
-const REGISTRATION_URL = 'http://localhost:8080/user/register'
-const SUCCESS_REGISTRATION_URL = '/auth'
+import { REGISTRATION_URL } from '../../module/apiUrls'
+import { POST_REGISTRATION_URL } from '../../module/apiUrls'
 
 export default {
     data() {
@@ -88,7 +88,7 @@ export default {
 
         postRedirect(shouldRedirect) {
             if(shouldRedirect) {
-                window.location.pathname = SUCCESS_REGISTRATION_URL;
+                window.location.pathname = POST_REGISTRATION_URL;
             }
         },
 

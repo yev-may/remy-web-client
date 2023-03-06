@@ -20,7 +20,7 @@ import CenterContainer from '../../fragments/CenterContainer.vue';
 
 import api from '../../../module/apiService';
 
-const NEW_CARD_URL = 'http://localhost:8080/card/create'
+import { CARD_CREATION_URL } from '../../../module/apiUrls';
 
 export default {
     data() {
@@ -36,7 +36,7 @@ export default {
     methods:
     {
         saveCard() {
-            api.postAuthedJson(NEW_CARD_URL, this.cardForm)
+            api.postAuthedJson(CARD_CREATION_URL, this.cardForm)
         },
 
         getBoxUrl() {

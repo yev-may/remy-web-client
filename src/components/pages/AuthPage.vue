@@ -27,10 +27,10 @@
 import CenterContainer from '../fragments/CenterContainer.vue'
 
 import api from '../../module/apiService.js'
-import { tokenHolder } from '../../module/tokenHolder.js'
 
-const GENERATE_TOKEN_URL = 'http://localhost:8080/token/get'
-const SUCCES_AUTH_URL = '/'
+import { tokenHolder } from '../../module/tokenHolder.js'
+import { AUTH_URL } from '../../module/apiUrls'
+import { POST_AUTH_URL } from '../../module/apiUrls'
 
 export default {
     data() {
@@ -46,7 +46,7 @@ export default {
     methods: 
     {
         sendLoginRequest() {
-            api.postJson(GENERATE_TOKEN_URL, this.userForm)
+            api.postJson(AUTH_URL, this.userForm)
                 .then(response => this.validateRepose(response))
                 .then(response => this.handleReponse(response))
                 .then(isAuthed => this.postRedirect(isAuthed));
@@ -71,7 +71,7 @@ export default {
 
         postRedirect(shouldRedirect) {
             if(shouldRedirect) {
-                window.location.pathname = SUCCES_AUTH_URL;
+                window.location.pathname = POST_AUTH_URL;
             }
         }
     },

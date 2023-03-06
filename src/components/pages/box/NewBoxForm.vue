@@ -19,7 +19,7 @@
 <script>
 import api from '../../../module/apiService.js'
 
-const BOX_CREATION_URL = 'http://localhost:8080/box/create';
+import { BOX_CREATION_URL } from '../../../module/apiUrls';
 
 export default {
 
