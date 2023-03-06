@@ -26,7 +26,7 @@
 <script>
 import CenterContainer from '../fragments/CenterContainer.vue'
 
-import { requestFactory } from '../../module/requestFactory.js'
+import api from '../../module/apiService.js'
 import { tokenHolder } from '../../module/tokenHolder.js'
 
 const GENERATE_TOKEN_URL = 'http://localhost:8080/token/get'
@@ -46,7 +46,7 @@ export default {
     methods: 
     {
         sendLoginRequest() {
-            requestFactory.postJsonRequest(GENERATE_TOKEN_URL, this.userForm)
+            api.postJson(GENERATE_TOKEN_URL, this.userForm)
                 .then(response => this.validateRepose(response))
                 .then(response => this.handleReponse(response))
                 .then(isAuthed => this.postRedirect(isAuthed));

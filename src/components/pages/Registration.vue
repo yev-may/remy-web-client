@@ -37,7 +37,7 @@
 import CenterContainer from '../fragments/CenterContainer.vue'
 import ValidatedFormField from '../fragments/ValidatedFormField.vue'
 
-import { requestFactory } from './../../module/requestFactory.js'
+import api from './../../module/apiService.js'
 
 const REGISTRATION_URL = 'http://localhost:8080/user/register'
 const SUCCESS_REGISTRATION_URL = '/auth'
@@ -74,7 +74,7 @@ export default {
     methods:
     {
         sendRegistrationRequest() {
-            requestFactory.postJsonRequest(REGISTRATION_URL, this.userForm)
+            api.postJson(REGISTRATION_URL, this.userForm)
                 .then(response => response.json())
                 .then(responseJson => this.validateResponse(responseJson))
                 .then(isRegistered => this.postRedirect(isRegistered));

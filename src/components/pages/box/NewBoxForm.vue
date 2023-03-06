@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { requestFactory } from '../../../module/requestFactory.js'
-import { tokenHolder } from '../../../module/tokenHolder.js'
+import api from '../../../module/apiService.js'
 
 const BOX_CREATION_URL = 'http://localhost:8080/box/create';
 
@@ -46,7 +45,7 @@ export default {
     methods: 
     {
         sendBoxCreationRequest() {
-            requestFactory.postAuthedJsonRequest(BOX_CREATION_URL, this.boxForm, tokenHolder.getToken());
+            api.postAuthedJson(BOX_CREATION_URL, this.boxForm);
         },
         // ToDo | Extract
         getErrorMessage(field) {

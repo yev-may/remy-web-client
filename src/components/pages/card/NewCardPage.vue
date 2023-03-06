@@ -18,8 +18,7 @@
 <script>
 import CenterContainer from '../../fragments/CenterContainer.vue';
 
-import { requestFactory } from '../../../module/requestFactory';
-import { tokenHolder } from '../../../module/tokenHolder';
+import api from '../../../module/apiService';
 
 const NEW_CARD_URL = 'http://localhost:8080/card/create'
 
@@ -37,7 +36,7 @@ export default {
     methods:
     {
         saveCard() {
-            requestFactory.postAuthedJsonRequest(NEW_CARD_URL, this.cardForm, tokenHolder.getToken())
+            api.postAuthedJson(NEW_CARD_URL, this.cardForm)
         },
 
         getBoxUrl() {

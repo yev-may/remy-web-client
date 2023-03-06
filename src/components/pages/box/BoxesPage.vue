@@ -24,19 +24,14 @@ import TopContainer from '../../fragments/TopContainer.vue'
 import BoxFacet from './BoxFacet.vue'
 import NewBoxForm from './NewBoxForm.vue'
 
-import { requestFactory } from '../../../module/requestFactory.js'
-import { tokenHolder } from '../../../module/tokenHolder.js'
+import api from '../../../module/apiService.js'
 
 const REGISTRATION_URL = 'http://localhost:8080/box/pageable'
 
 export default {
     data() {
         return {
-            boxes: [
-              { id: 1, title: 'Test 1' },
-              { id: 2, title: 'Test 2' },
-              { id: 3, title: 'Test 3' },
-            ],
+            boxes: [],
             perPage: 3,
             totalRows: 1,
             currentPage: 1,
@@ -47,31 +42,29 @@ export default {
         };
     },
 
-    methods: {
+    methods: 
+    {
         handlePageChange(value) {
             this.currentPage = value;
             this.updateCardBoxes();
         },
+
         updateCardBoxes() {
-            this.getCardBoxes()
+            return api.postAuthedJson(REGISTRATION_URL, { page: this.currentPage - 1, size: this.perPage })
+                .then(response => response.json())
                 .then(json => this.handleResponse(json));
         },
-        getCardBoxes() {
-            return requestFactory.postAuthedJsonRequest(REGISTRATION_URL, { page: this.currentPage - 1, size: this.perPage }, tokenHolder.getToken())
-                .then(response => response.json());
-        },
+
         handleResponse(json) {
             this.boxes = json.facets;
             this.totalRows = json.totalElements;
-            console.log(this.boxes);
         }
     },
+
     beforeMount() {
         this.updateCardBoxes();
     },
-    component: {
-        TopContainer
-    },
+  
     components: { TopContainer, BoxFacet, NewBoxForm }
 }
 </script>
