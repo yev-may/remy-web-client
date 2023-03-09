@@ -9,7 +9,7 @@ export default
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(body)
-        }).then(r => r.status == 401)
+        });
     },
 
     postAuthedJson(url, body) {
