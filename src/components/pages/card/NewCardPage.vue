@@ -10,13 +10,20 @@
                 <textarea v-model="cardForm.answer" class="form-control" id="answerTextArea" rows="3" placeholder="Type here the answer"></textarea>
             </div>
         </form>
-        <button @click="saveCard()" class="btn w-100 btn-theme mt-3">Save</button>
+        <button @click="showConfirmationForm()" class="btn w-100 btn-theme mt-3">Save</button>
         <a class="btn w-100 btn-theme mt-3" :href="getBoxUrl()">Back</a>
+
+        <NewCardSaveConfirmation 
+            :cardForm="cardForm" 
+            :isVisible="isConfirmationFormVisible" 
+            :cancelCallback="hideConfirmationForm"
+            :confirmCallback="saveCard"/>
     </CenterContainer>
 </template>
 
 <script>
 import CenterContainer from '../../fragments/CenterContainer.vue';
+import NewCardSaveConfirmation from './NewCardSaveConfirmation.vue';
 
 import api from '../../../module/apiService';
 
@@ -29,14 +36,30 @@ export default {
                 boxId: this.getBoxId(),
                 question: '',
                 answer: ''
-            }
+            },
+            isConfirmationFormVisible: false
         }
     },
 
     methods:
     {
+        showConfirmationForm() {
+            this.isConfirmationFormVisible = true;
+        },
+
+        hideConfirmationForm() {
+            this.isConfirmationFormVisible = false;
+        },
+
         saveCard() {
             api.postAuthedJson(CARD_CREATION_URL, this.cardForm)
+            .then(this.hideConfirmationForm())
+            .then(this.clearForm());
+        },
+
+        clearForm() {
+            this.cardForm.question = "";
+            this.cardForm.answer = "";
         },
 
         getBoxUrl() {
@@ -47,10 +70,10 @@ export default {
         getBoxId() {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            return urlParams.get('box-id')
+            return urlParams.get('box-id');
         }
     },
 
-    components: { CenterContainer }
+    components: { CenterContainer, NewCardSaveConfirmation }
 }
 </script>
