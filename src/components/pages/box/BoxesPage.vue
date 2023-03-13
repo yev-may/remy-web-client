@@ -61,7 +61,7 @@ export default {
         }
     },
 
-    beforeMount() {
+    mounted() {
         this.updateCardBoxes();
     },
   

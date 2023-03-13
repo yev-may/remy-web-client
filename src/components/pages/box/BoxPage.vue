@@ -8,12 +8,11 @@
         </div>
         
         <div class="mb-3">
-            <p class="mb-2">New cards today: {{ box.cardsAddedToday }}</p>
             <a class="btn w-100 btn-theme" :href="getNewCardPageUrl()">New card</a>
         </div>
         
         <div class="mb-4">
-            <p class="mb-2">Cards to repeat for today: {{ box.cardsToRepeatToday }}</p>
+            <p class="mb-2">Cards to repeat for today: {{ box.cardToRepeatQuantity }}</p>
             <a class="btn w-100 btn-theme" href="">Start repetition</a>
         </div>
         
@@ -22,21 +21,35 @@
 
 <script>
 import TopContainer from '../../fragments/TopContainer.vue';
+import apiService from '../../../module/apiService';
+import { BOX_URL } from '../../../module/apiUrls';
 
 export default {
     data() {
         return {
             box: {
-                id: 1,
-                title: 'Test 1',
-                cardsAddedToday: 5,
-                cardsToRepeatToday: 5
+                id: null,
+                title: null,
+                maxRepetitionLevel: null,
+                lastRepetitionLevel: null,
+                lastRepetitionDate: null,
+                cardToRepeatQuantity: null
             }
         }
     },
 
     methods:
     {
+        getBox() {
+            apiService.postAuthedJson(BOX_URL, this.getBoxId())
+                .then(response => response.json())
+                .then(boxJson => {
+                    this.box.id = boxJson.id;
+                    this.box.title = boxJson.title;
+                    this.box.cardToRepeatQuantity = boxJson.cardToRepeatQuantity;
+                });
+        },
+
         getNewCardPageUrl() {
             return '/card/new?box-id=' + this.getBoxId();
         },
@@ -47,6 +60,10 @@ export default {
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get('id')
         }
+    },
+
+    mounted() {
+        this.getBox();
     },
 
     components: { TopContainer }
